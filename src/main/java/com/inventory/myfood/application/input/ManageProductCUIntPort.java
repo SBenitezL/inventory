@@ -68,6 +68,16 @@ public interface ManageProductCUIntPort {
     boolean isCategory(String category);
 
     /**
+     * Determina si hay inventario suficiente para cumplir con la demanda de
+     * productos del usuario.
+     * 
+     * @param demand demanda de productos que se utilizarán.
+     * @return {@code List<Product>} con los productos que faltan para saisfacer la
+     *         demanda o {@code null} en caso de que se pueda satisfacer la demanda.
+     */
+    List<Product> checkInventoryAvailability(List<Product> demand);
+
+    /**
      * Recupera todos los productos que se han registrado en el sistema.
      * 
      * @return {@code List<Product>} con la información del inventario o
