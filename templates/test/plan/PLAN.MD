@@ -16,8 +16,8 @@
 **3. Alcance**
 
 * Se probarán los servicios reistrados en http://localhost:8080/swagger-ui/index.html
-  > [!NOTE]
-  > Para acceder a la información del link es necesario lanzar el aplicativo.
+  >  [!NOTE]
+  >  Para acceder a la información del link es necesario lanzar el aplicativo.
 * Se realizaran pruebas de Postman.
 
 **4. Entorno de pruebas**
@@ -37,8 +37,8 @@
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
 
-      > [!NOTE]
-      > Por defecto la aplicación se ejecuta en http://localhost:8080
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
@@ -66,7 +66,7 @@
 
 * **Resultados reales:** 
 
-  <img src="../results/test01.png" alt="test01">
+  <img src="../results/test01.png" alt="test01"> 
 
 * **Estado:** Aprobado
 
@@ -79,8 +79,8 @@
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
 
-> [!NOTE]
-> Por defecto la aplicación se ejecuta en http://localhost:8080
+>  [!NOTE]
+>  Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
@@ -106,7 +106,7 @@
 
 * **Resultados reales:** 
 
-  <img src="../results/test02.png" alt="test02">
+  <img src="../results/test02.png" alt="test02"> 
 
 
 * **Estado:** Aprobado
@@ -118,8 +118,8 @@
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
 
-      > [!NOTE]
-      > Por defecto la aplicación se ejecuta en http://localhost:8080
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
@@ -143,7 +143,7 @@
       }
 * **Resultados reales:** 
 
-  <img src="../results/test03.png" alt="test03">
+  <img src="../results/test03.png" alt="test03"> 
 
 
 * **Estado:** Aprobado
@@ -156,8 +156,8 @@
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
 
-      > [!NOTE]
-      > Por defecto la aplicación se ejecuta en http://localhost:8080
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
@@ -181,7 +181,7 @@
       }
 * **Resultados reales:** 
 
-  <img src="../results/test04.png" alt="test04">
+  <img src="../results/test04.png" alt="test04"> 
 
 
 * **Estado:** Aprobado
@@ -194,8 +194,8 @@
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
 
-      > [!NOTE]
-      > Por defecto la aplicación se ejecuta en http://localhost:8080
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
@@ -219,7 +219,7 @@
       }
 * **Resultados reales:** 
 
-  <img src="../results/test05.png" alt="test05">
+  <img src="../results/test05.png" alt="test05"> 
 
 
 * **Estado:** Aprobado
@@ -232,8 +232,8 @@
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
 
-      > [!NOTE]
-      > Por defecto la aplicación se ejecuta en http://localhost:8080
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
@@ -257,7 +257,7 @@
       }
 * **Resultados reales:**
 
-  <img src="../results/test06.png" alt="test06">
+  <img src="../results/test06.png" alt="test06"> 
 
 
 * **Estado:** Aprobado
@@ -270,8 +270,8 @@
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
 
-      > [!NOTE]
-      > Por defecto la aplicación se ejecuta en http://localhost:8080
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
@@ -295,7 +295,7 @@
       }
 * **Resultados reales:**
 
-  <img src="../results/test07.png" alt="test07">
+  <img src="../results/test07.png" alt="test07"> 
 
 
 * **Estado:** Aprobado
@@ -308,8 +308,8 @@
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
 
-      > [!NOTE]
-      > Por defecto la aplicación se ejecuta en http://localhost:8080
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
@@ -335,7 +335,7 @@
       }
 * **Resultados reales:**
 
-  <img src="../results/test08.png" alt="test08">
+  <img src="../results/test08.png" alt="test08"> 
 
 
 * **Estado:** Aprobado
@@ -348,9 +348,9 @@
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
 
-      > [!NOTE]
-      > Por defecto la aplicación se ejecuta en http://localhost:8080
-      
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
+
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
       {
@@ -373,7 +373,7 @@
       }
 * **Resultados reales:** 
 
-  <img src="../results/test09.png" alt="test09">
+  <img src="../results/test09.png" alt="test09"> 
 
 
 * **Estado:** Aprobado
