@@ -378,6 +378,320 @@
 
 * **Estado:** Aprobado
 
+* **Test 010 - Consultar todos los productos con inventario vacio:** 
+* **Descripción:** Se enviará una petición para recuperar toda la información del inventario mientras no sa ha registrado ningun producto.
+* **Precondiciones:** Sistema vacio
+* **Pasos:** 
+  1. Crear una petición.
+  2. Elegir el método GET.
+  3. Ingresar el endpoint a probar (/api/v1/products)
+
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
+
+* **Resultados esperados:** 
+  1. Status code: 404 NOT FOUND
+  2. Body: 
+     ```json
+      {
+        "errorCode": "GC-0005",
+        "message": "ERROR, NO DATA, There is no information recorded in the inventory.",
+        "httpCode": 404,
+        "url": "http://localhost:8080/api/v1/products/",
+        "method": "GET"
+      }
+* **Resultados reales:** 
+
+  <img src="../results/test10.png" alt="test10"> 
+
+
+* **Estado:** Aprobado
+
+* **Test 011 - Consultar todos los productos con 1 producto registrado:** 
+* **Descripción:** Se enviará una petición para recuperar toda la información del inventario cuando solo se ha registrado 1 producto.
+* **Precondiciones:** Haber ingresado un producto correctamente.
+* **Pasos:** 
+  1. Crear una petición.
+  2. Elegir el método GET.
+  3. Ingresar el endpoint a probar (/api/v1/products)
+
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
+
+* **Resultados esperados:** 
+  1. Status code: 200 OK
+  2. Body: 
+     ```json
+      [
+        {
+          "id": "8b50ad68-3e26-43f9-a200-8748c8045de9",
+          "name": "Papa",
+          "stock": 0.0,
+          "category": "LEGUMES",
+          "units": "POUNDS",
+          "usefulLife": "2024-10-30",
+          "expired": false
+        }
+      ]
+* **Resultados reales:** 
+
+  <img src="../results/test11.png" alt="test11"> 
+
+
+* **Estado:** Aprobado
+
+* **Test 012 - Consultar todos los productos con mas de 1 producto registrado:** 
+* **Descripción:** Se enviará una petición para recuperar toda la información del inventario cuando solo se ha registrado mas de 1 producto.
+* **Precondiciones:** Haber ingresado varios productos correctamente.
+* **Pasos:** 
+  1. Crear una petición.
+  2. Elegir el método GET.
+  3. Ingresar el endpoint a probar (/api/v1/products)
+
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
+
+* **Resultados esperados:** 
+  1. Status code: 200 OK
+  2. Body: 
+     ```json
+      [
+        {
+          "id": "2557b53b-460a-45e0-94cd-6efd02f41bff",
+          "name": "Sandia",
+          "stock": 0.0,
+          "category": "FRUITS",
+          "units": "POUNDS",
+          "usefulLife": "2024-11-27",
+          "expired": false
+        },
+        {
+          "id": "8b50ad68-3e26-43f9-a200-8748c8045de9",
+          "name": "Papa",
+          "stock": 0.0,
+          "category": "LEGUMES",
+          "units": "POUNDS",
+          "usefulLife": "2024-10-30",
+          "expired": false
+        }
+      ]
+* **Resultados reales:** 
+
+  <img src="../results/test12.png" alt="test12"> 
+
+
+* **Estado:** Aprobado
+
+* **Test 013 - Actualizar un producto existente:** 
+* **Descripción:** Se enviará una petición para actualizar un producto que ya existe
+* **Precondiciones:** Haber ingresado al menos un producto correctamente.
+* **Pasos:** 
+  1. Crear una petición.
+  2. Elegir el método GET.
+  3. Ingresar el endpoint a probar (/api/v1/products)
+ 
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
+
+  4. Rellenear el Body con la nueva información
+ ```json
+     {
+        "id": "236ee3fd-7e22-4500-a899-a79a439e1564",
+        "name": "Papaya",
+        "stock": 14,
+        "category": "FRUITS",
+        "units": "POUNDS",
+        "usefulLife": "2024-11-01"
+      }
+
+* **Resultados esperados:** 
+  1. Status code: 200 OK
+  2. Body: 
+     ```json
+      {
+        "id": "236ee3fd-7e22-4500-a899-a79a439e1564",
+        "name": "Papaya",
+        "stock": 14.0,
+        "category": "FRUITS",
+        "units": "POUNDS",
+        "usefulLife": "2024-10-31",
+        "expired": false
+      }
+* **Resultados reales:** 
+
+  <img src="../results/test12.png" alt="test12"> 
+
+
+* **Estado:** Aprobado
+
+
+* **Test 014 - Actualizar un producto no existente:** 
+* **Descripción:** Se enviará una petición para actualizar un producto que no existe
+* **Precondiciones:** Ninguna
+* **Pasos:** 
+  1. Crear una petición.
+  2. Elegir el método GET.
+  3. Ingresar el endpoint a probar (/api/v1/products)
+ 
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
+
+  4. Rellenear el Body con la nueva información
+ ```json
+     {
+        "id": "estenoexiste",
+        "name": "Banano",
+        "stock": 3,
+        "category": "FRUITS",
+        "units": "POUNDS",
+        "usefulLife": "2024-11-01"
+      }
+
+* **Resultados esperados:** 
+  1. Status code: 404 NOT FOUND
+  2. Body: 
+     ```json
+      {
+        "errorCode": "GC-0008",
+        "message": "ERROR, COULDN'T FOUND ENTITY, The product with id: estenoexiste is not registered in the inventory.",
+        "httpCode": 404,
+        "url": "http://localhost:8080/api/v1/products",
+        "method": "PUT"
+      }
+
+* **Resultados reales:** 
+
+  <img src="../results/test14.png" alt="test14"> 
+
+
+* **Estado:** Aprobado
+
+
+* **Test 015 - Actualizar un producto sin nombre:** 
+* **Descripción:** Se enviará una petición para actualizar un producto sin agregar el nombre.
+* **Precondiciones:** Tener al menos 1 producto registrado
+* **Pasos:** 
+  1. Crear una petición.
+  2. Elegir el método GET.
+  3. Ingresar el endpoint a probar (/api/v1/products)
+ 
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
+
+  4. Rellenear el Body con la nueva información
+ ```json
+     {
+        "id": "236ee3fd-7e22-4500-a899-a79a439e1564",
+        "name": "",
+        "stock": 3,
+        "category": "FRUITS",
+        "units": "POUNDS",
+        "usefulLife": "2024-11-01"
+      }
+
+* **Resultados esperados:** 
+  1. Status code: 400 BAD REQUEST
+  2. Body: 
+     ```json
+      {
+        "errorCode": "GC-0007",
+        "message": "ERROR, BAD FORMAT, The name of the product can't be blank",
+        "httpCode": 400,
+        "url": "http://localhost:8080/api/v1/products",
+        "method": "PUT"
+      }
+
+* **Resultados reales:** 
+
+  <img src="../results/test15.png" alt="test15"> 
+
+
+* **Estado:** Aprobado
+
+* **Test 016 - Actualizar un producto con nombre ya existente:** 
+* **Descripción:** Se enviará una petición para actualizar un producto con un nombre que ya pertenece a otro producto
+* **Precondiciones:** Tener al menos 2 productos registrados
+* **Pasos:** 
+  1. Crear una petición.
+  2. Elegir el método GET.
+  3. Ingresar el endpoint a probar (/api/v1/products)
+ 
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
+
+  4. Rellenear el Body con la nueva información
+ ```json
+     {
+        "id": "236ee3fd-7e22-4500-a899-a79a439e1564",
+        "name": "Sandia",
+        "stock": 3,
+        "category": "FRUITS",
+        "units": "POUNDS",
+        "usefulLife": "2024-11-01"
+      }
+
+* **Resultados esperados:** 
+  1. Status code: 406 NOT ACCEPTABLE
+  2. Body: 
+     ```json
+      {
+        "errorCode": "GC-0007",
+        "message": "ERROR, BAD FORMAT, The name of the product can't be blank",
+        "httpCode": 400,
+        "url": "http://localhost:8080/api/v1/products",
+        "method": "PUT"
+      }
+
+* **Resultados reales:** 
+
+  <img src="../results/test16.png" alt="test16"> 
+
+
+* **Estado:** Aprobado
+
+* **Test 017 - Actualizar un producto con stock negativo:** 
+* **Descripción:** Se enviará una petición para actualizar un producto con un stock negativo.
+* **Precondiciones:** Tener al menos 1 producto registrado
+* **Pasos:** 
+  1. Crear una petición.
+  2. Elegir el método GET.
+  3. Ingresar el endpoint a probar (/api/v1/products)
+ 
+> [!NOTE]
+> Por defecto la aplicación se ejecuta en http://localhost:8080
+
+  4. Rellenear el Body con la nueva información
+ ```json
+     {
+        "id": "236ee3fd-7e22-4500-a899-a79a439e1564",
+        "name": "Pera",
+        "stock": -3,
+        "category": "FRUITS",
+        "units": "POUNDS",
+        "usefulLife": "2024-11-01"
+      }
+
+* **Resultados esperados:** 
+  1. Status code: 400 BAD REQUEST
+  2. Body: 
+     ```json
+      {
+        "errorCode": "GC-0007",
+        "message": "ERROR, BAD FORMAT, The stock can't be negative",
+        "httpCode": 400,
+        "url": "http://localhost:8080/api/v1/products",
+        "method": "PUT"
+        }
+
+* **Resultados reales:** 
+
+  <img src="../results/test17.png" alt="test17"> 
+
+
+* **Estado:** Aprobado
+
+
+
 **6. Estrategias de prueba**
 
 * Describir las estrategias de prueba que se utilizarán, como pruebas funcionales, de rendimiento, de seguridad, etc.
