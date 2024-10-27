@@ -34,29 +34,31 @@ public interface ManageProductCUIntPort {
     /**
      * Se encarga de la lógica de salida de los productos del inventario.
      * 
+     * @param uuid   Identificador del objeto a modificar.
      * @param amount cantidad de unidades salidas del inventario
-     * @return {@code true} si se completa satisfactoriamente y {@code false} en
-     *         caso contrario.
+     * @return {@code Product} producto con la nueva información.
+     * 
      */
-    boolean decreaseStock(Product product, int amount);
+    Product decreaseStock(String uuid, Double amount);
 
     /**
      * Se encarga de la lógica de agregar productos al inventario.
      * 
+     * @param uuid   Identificador del objeto a modificar.
      * @param amount cantidad de unidades a agregar al inventario.
-     * @return {@code true} en caso de que se complete la acción y {@code false} en
-     *         caso contrario.
+     * @return {@code Product} producto con la nueva información.
+     * 
      */
-    boolean increaseStock(Product product, int amount);
+    Product increaseStock(String uuid, Double amount);
 
     /**
      * Se encarga de determinar si un producto ha llegado a su fecha de caducidad y
      * lo marca de esta forma
      * 
-     * @return {@code true} en caso de que el producto se haya vencido o
-     *         {@code false} en caso contrario.
+     * @param uuid Identificador del objeto a modificar.
+     * @return {@code Product} producto con la nueva información.
      */
-    public boolean markExpired(Product product);
+    public Product markExpired(String uuid);
 
     /**
      * Determina si la categoria ingresada es válida
@@ -73,7 +75,7 @@ public interface ManageProductCUIntPort {
      * 
      * @param demand demanda de productos que se utilizarán.
      * @return {@code List<Product>} con los productos que faltan para saisfacer la
-     *         demanda o {@code null} en caso de que se pueda satisfacer la demanda.
+     *         demanda.
      */
     List<Product> checkInventoryAvailability(List<Product> demand);
 
@@ -120,4 +122,12 @@ public interface ManageProductCUIntPort {
      *         {@code null} en caso de que este vacío.
      */
     List<Product> getOneWeekToExpire();
+
+    /**
+     * Actualiza el estado de expirado de los productos.
+     * 
+     * @return {@code List<Product>} con la lista de los nuevos productos marcados
+     *         como expirados.
+     */
+    List<Product> updateExpired();
 }
