@@ -13,4 +13,8 @@ public class ProductName {
             throw new IllegalArgumentException("The name of the product can't be blank");
         this.name = name;
     }
+
+    public boolean isValidName() {
+        return !this.name.isBlank();
+    }
 }

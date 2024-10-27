@@ -23,7 +23,17 @@ public class Product {
     private Date usefulLife;
     private boolean isExpired;
 
-    public boolean decreaseStock(int amount) {
+    public Product(String id, ProductName name, Category category, Stock stock, Units unit, Date usefulLife) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.stock = stock;
+        this.unit = unit;
+        this.usefulLife = usefulLife;
+        this.calculeExpired();
+    }
+
+    public boolean decreaseStock(Double amount) {
         // Calcula la nueva cantidad
         amount = this.stock.getAmount() - amount;
         // Determina si es válida la nueva cantidad.
@@ -34,13 +44,17 @@ public class Product {
         return true;
     }
 
-    public boolean markExpired() {
+    public boolean calculeExpired() {
+        if (this.usefulLife == null) {
+            this.isExpired = false;
+            return isExpired;
+        }
         // Determina si esta vencido el producto
-        this.isExpired = this.usefulLife.after(new Date());
+        this.isExpired = this.usefulLife.before(new Date());
         return isExpired;
     }
 
-    public boolean increaseStock(int amount) {
+    public boolean increaseStock(Double amount) {
         // Verifica que la cantidad a ingresar sea válida.
         if (amount <= 0)
             return false;
@@ -53,6 +67,26 @@ public class Product {
 
     public boolean isCategory(String catgory) {
         return Category.isCategory(catgory);
+    }
+
+    public boolean isValidName() {
+        return this.name.isValidName();
+    }
+
+    public boolean isValidStock() {
+        return this.stock.isValidStock();
+    }
+
+    public void update(Product data) {
+        this.category = data.category;
+        this.name = data.name;
+        this.unit = data.unit;
+        this.usefulLife = data.usefulLife;
+        this.calculeExpired();
+    }
+
+    public void changeName(String name) {
+        this.name = new ProductName(name);
     }
 
 }
