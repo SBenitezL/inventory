@@ -49,6 +49,7 @@
         "units": "POUNDS",
         "usefulLife": "2024-10-31"
       }
+
 * **Resultados esperados:** 
   1. Status code: 201 CREATED
   2. Body: 
@@ -62,6 +63,7 @@
         "usefulLife": "2024-10-30",
         "expired": false
       }
+
 * **Resultados reales:** 
 
   <img src="../results/test01.png" alt="test01">
@@ -89,6 +91,7 @@
         "units": "POUNDS",
         "usefulLife": "2024-11-28"
       }
+
 * **Resultados esperados:** 
   1. Status code: 409 CONFLICT
   2. Body: 
@@ -100,6 +103,7 @@
         "url": "http://localhost:8080/api/v1/products",
         "method": "POST"
       }
+
 * **Resultados reales:** 
 
   <img src="../results/test02.png" alt="test02">
