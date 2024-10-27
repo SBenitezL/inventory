@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.inventory.myfood.infraestructure.output.persistence.entities.ProductEntity;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Date;
 
 /**
@@ -16,10 +17,16 @@ import java.util.Date;
 public interface ProductRepository extends JpaRepository<ProductEntity, String> {
     List<ProductEntity> findAllByProductExpiredIsFalse();
 
-    List<ProductEntity> findAllByProductExpiredIsFalseAndProductStockGreaterThan(int productStock);
+    List<ProductEntity> findAllByProductExpiredIsFalseAndProductStockGreaterThan(Double productStock);
+
+    List<ProductEntity> findAllByProductStockLessThanEqual(Double productStock);
 
     List<ProductEntity> findAllByProductExpiredIsTrue();
 
     List<ProductEntity> findAllByProductUseFulLifeBefore(Date date);
+
+    Optional<ProductEntity> findByProductIdAndProductExpiredIsFalse(String productId);
+
+    boolean existsByProductName(String productName);
 
 }

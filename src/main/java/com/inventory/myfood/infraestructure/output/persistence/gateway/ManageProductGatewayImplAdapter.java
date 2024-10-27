@@ -2,14 +2,14 @@ package com.inventory.myfood.infraestructure.output.persistence.gateway;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
 import com.inventory.myfood.application.output.ManageProductGatewayIntPort;
 import com.inventory.myfood.domain.agregates.Product;
 import com.inventory.myfood.infraestructure.output.persistence.entities.ProductEntity;
+import com.inventory.myfood.infraestructure.output.persistence.mapper.MapperProductPersistenceDomain;
 import com.inventory.myfood.infraestructure.output.persistence.repositories.ProductRepository;
 
 /**
@@ -23,47 +23,80 @@ import com.inventory.myfood.infraestructure.output.persistence.repositories.Prod
 @Service
 public class ManageProductGatewayImplAdapter implements ManageProductGatewayIntPort {
     private final ProductRepository serviceDB;
-    private final ModelMapper mapper;
+    private final MapperProductPersistenceDomain mapper;
 
-    public ManageProductGatewayImplAdapter(ProductRepository serviceDB, ModelMapper mapper) {
+    public ManageProductGatewayImplAdapter(ProductRepository serviceDB, MapperProductPersistenceDomain mapper) {
         this.serviceDB = serviceDB;
         this.mapper = mapper;
     }
 
     @Override
     public Product saveProduct(Product product) {
-        return this.mapper.map(this.serviceDB.save(this.mapper.map(product, ProductEntity.class)), Product.class);
+        return this.mapper.persistenceToDomain(this.serviceDB.save(this.mapper.domainToPersistence(product)));
     }
 
     @Override
     public List<Product> findAll() {
-        return this.mapper.map(serviceDB.findAll(), new TypeToken<List<Product>>() {
-        }.getType());
+        return this.mapper.persistenceToDomain(serviceDB.findAll());
     }
 
     @Override
     public List<Product> findNotExpired() {
-        return this.mapper.map(serviceDB.findAllByProductExpiredIsFalse(), new TypeToken<List<Product>>() {
-        }.getType());
+        return this.mapper.persistenceToDomain(serviceDB.findAllByProductExpiredIsFalse());
     }
 
     @Override
     public List<Product> findNotExpiredWithAmount(Double amount) {
-        return this.mapper.map(serviceDB.findAllByProductExpiredIsFalseAndProductStockGreaterThan(amount),
-                new TypeToken<List<Product>>() {
-                }.getType());
+        return this.mapper
+                .persistenceToDomain(serviceDB.findAllByProductExpiredIsFalseAndProductStockGreaterThan(amount));
     }
 
     @Override
     public List<Product> findExpired() {
-        return this.mapper.map(serviceDB.findAllByProductExpiredIsTrue(), new TypeToken<List<Product>>() {
-        }.getType());
+        return this.mapper.persistenceToDomain(serviceDB.findAllByProductExpiredIsTrue());
     }
 
     @Override
     public List<Product> findNearToExpire(Date date) {
-        return this.mapper.map(serviceDB.findAllByProductUseFulLifeBefore(date), new TypeToken<List<Product>>() {
-        }.getType());
+        return this.mapper.persistenceToDomain(serviceDB.findAllByProductUseFulLifeBefore(date));
+    }
+
+    @Override
+    public Product findByProductId(String uuid) {
+        Optional<ProductEntity> search = this.serviceDB.findById(uuid);
+        if (!search.isPresent())
+            return null;
+        return this.mapper.persistenceToDomain(search.get());
+
+    }
+
+    @Override
+    public Product findByIdAndIsNotExpired(String uuid) {
+        Optional<ProductEntity> search = this.serviceDB.findByProductIdAndProductExpiredIsFalse(uuid);
+        if (!search.isPresent())
+            return null;
+        return this.mapper.persistenceToDomain(search.get());
+    }
+
+    @Override
+    public List<Product> findWithoutExistenses() {
+        return this.mapper.persistenceToDomain(serviceDB.findAllByProductStockLessThanEqual(0.0));
+    }
+
+    @Override
+    public List<Product> findAllById(List<String> uuids) {
+        return this.mapper.persistenceToDomain(serviceDB.findAllById(uuids));
+    }
+
+    @Override
+    public List<Product> saveAll(List<Product> products) {
+
+        return this.mapper.persistenceToDomain(this.serviceDB.saveAll((this.mapper.domainToPersistence(products))));
+    }
+
+    @Override
+    public boolean existByName(String name) {
+        return this.serviceDB.existsByProductName(name);
     }
 
 }
