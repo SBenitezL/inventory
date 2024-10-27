@@ -495,7 +495,7 @@
 
   4. Rellenear el Body con la nueva información
  ```json
-     {
+      {
         "id": "236ee3fd-7e22-4500-a899-a79a439e1564",
         "name": "Papaya",
         "stock": 14,
