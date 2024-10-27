@@ -538,8 +538,8 @@
 > Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenear el Body con la nueva información
- ```json
-     {
+    ```json
+      {
         "id": "estenoexiste",
         "name": "Banano",
         "stock": 3,
@@ -580,8 +580,8 @@
 > Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenear el Body con la nueva información
- ```json
-     {
+    ```json
+      {
         "id": "236ee3fd-7e22-4500-a899-a79a439e1564",
         "name": "",
         "stock": 3,
@@ -593,7 +593,7 @@
 * **Resultados esperados:** 
   1. Status code: 400 BAD REQUEST
   2. Body: 
-     ```json
+    ```json
       {
         "errorCode": "GC-0007",
         "message": "ERROR, BAD FORMAT, The name of the product can't be blank",
@@ -621,8 +621,8 @@
 > Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenear el Body con la nueva información
- ```json
-     {
+    ```json
+      {
         "id": "236ee3fd-7e22-4500-a899-a79a439e1564",
         "name": "Sandia",
         "stock": 3,
@@ -634,7 +634,7 @@
 * **Resultados esperados:** 
   1. Status code: 406 NOT ACCEPTABLE
   2. Body: 
-     ```json
+    ```json
       {
         "errorCode": "GC-0007",
         "message": "ERROR, BAD FORMAT, The name of the product can't be blank",
@@ -662,8 +662,8 @@
 > Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenear el Body con la nueva información
- ```json
-     {
+    ```json
+      {
         "id": "236ee3fd-7e22-4500-a899-a79a439e1564",
         "name": "Pera",
         "stock": -3,
@@ -675,7 +675,7 @@
 * **Resultados esperados:** 
   1. Status code: 400 BAD REQUEST
   2. Body: 
-     ```json
+    ```json
       {
         "errorCode": "GC-0007",
         "message": "ERROR, BAD FORMAT, The stock can't be negative",
