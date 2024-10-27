@@ -62,7 +62,7 @@
       }
 * **Resultados reales:** 
 
-  <img src="templates/test/results/test01.png" alt="test01">
+  <img src="../results/test01.png" alt="test01">
 
 * **Estado:** Aprobado
 
@@ -98,7 +98,7 @@
       }
 * **Resultados reales:** 
 
-  <img src="templates/test/results/test02.png" alt="test02">
+  <img src="../results/test02.png" alt="test02">
 
 
 * **Estado:** Aprobado
@@ -133,7 +133,7 @@
       }
 * **Resultados reales:** 
 
-  <img src="templates/test/results/test03.png" alt="test03">
+  <img src="../results/test03.png" alt="test03">
 
 
 * **Estado:** Aprobado
@@ -169,7 +169,7 @@
       }
 * **Resultados reales:** 
 
-  <img src="templates/test/results/test04.png" alt="test04">
+  <img src="../results/test04.png" alt="test04">
 
 
 * **Estado:** Aprobado
@@ -205,7 +205,7 @@
       }
 * **Resultados reales:** 
 
-  <img src="templates/test/results/test05.png" alt="test05">
+  <img src="../results/test05.png" alt="test05">
 
 
 * **Estado:** Aprobado
@@ -241,7 +241,7 @@
       }
 * **Resultados reales:**
 
-  <img src="templates/test/results/test06.png" alt="test06">
+  <img src="../results/test06.png" alt="test06">
 
 
 * **Estado:** Aprobado
@@ -277,7 +277,7 @@
       }
 * **Resultados reales:**
 
-  <img src="templates/test/results/test07.png" alt="test07">
+  <img src="../results/test07.png" alt="test07">
 
 
 * **Estado:** Aprobado
@@ -315,7 +315,7 @@
       }
 * **Resultados reales:**
 
-  <img src="templates/test/results/test08.png" alt="test08">
+  <img src="../results/test08.png" alt="test08">
 
 
 * **Estado:** Aprobado
@@ -351,7 +351,7 @@
       }
 * **Resultados reales:** 
 
-  <img src="templates/test/results/test09.png" alt="test09">
+  <img src="../results/test09.png" alt="test09">
 
 
 * **Estado:** Aprobado
