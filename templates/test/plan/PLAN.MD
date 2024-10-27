@@ -517,6 +517,7 @@
         "usefulLife": "2024-10-31",
         "expired": false
       }
+
 * **Resultados reales:** 
 
   <img src="../results/test12.png" alt="test12"> 
