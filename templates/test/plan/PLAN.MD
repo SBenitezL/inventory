@@ -36,8 +36,10 @@
   1. Crear una petición.
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
+
       > [!NOTE]
       > Por defecto la aplicación se ejecuta en http://localhost:8080
+
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
       {
@@ -74,8 +76,10 @@
   1. Crear una petición.
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
+
       > [!NOTE]
       > Por defecto la aplicación se ejecuta en http://localhost:8080
+
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
       {
@@ -109,8 +113,10 @@
   1. Crear una petición.
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
+
       > [!NOTE]
       > Por defecto la aplicación se ejecuta en http://localhost:8080
+
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
       {
@@ -145,8 +151,10 @@
   1. Crear una petición.
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
+
       > [!NOTE]
       > Por defecto la aplicación se ejecuta en http://localhost:8080
+
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
       {
@@ -181,8 +189,10 @@
   1. Crear una petición.
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
+
       > [!NOTE]
       > Por defecto la aplicación se ejecuta en http://localhost:8080
+
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
       {
@@ -217,8 +227,10 @@
   1. Crear una petición.
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
+
       > [!NOTE]
       > Por defecto la aplicación se ejecuta en http://localhost:8080
+
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
       {
@@ -253,8 +265,10 @@
   1. Crear una petición.
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
+
       > [!NOTE]
       > Por defecto la aplicación se ejecuta en http://localhost:8080
+
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
       {
@@ -289,8 +303,10 @@
   1. Crear una petición.
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
+
       > [!NOTE]
       > Por defecto la aplicación se ejecuta en http://localhost:8080
+
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
       {
@@ -327,8 +343,10 @@
   1. Crear una petición.
   2. Elegir el método POST.
   3. Ingresar el endpoint a probar (/api/v1/products)
+
       > [!NOTE]
       > Por defecto la aplicación se ejecuta en http://localhost:8080
+      
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
      ```json
       {
