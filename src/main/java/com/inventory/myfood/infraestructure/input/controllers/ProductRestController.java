@@ -166,11 +166,8 @@ public class ProductRestController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getAll(BindingResult errors) {
+    public ResponseEntity<?> getAll() {
         Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse = this.catchErrors(errors);
-        if (!errorResponse.isEmpty())
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.BAD_REQUEST);
         try {
             List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getAll());
             return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
@@ -182,11 +179,8 @@ public class ProductRestController {
     }
 
     @GetMapping("/existences")
-    public ResponseEntity<?> getExistences(BindingResult errors) {
+    public ResponseEntity<?> getExistences() {
         Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse = this.catchErrors(errors);
-        if (!errorResponse.isEmpty())
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.BAD_REQUEST);
         try {
             List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getProductExistences());
             return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
@@ -198,11 +192,8 @@ public class ProductRestController {
     }
 
     @GetMapping("/existences/any")
-    public ResponseEntity<?> getWithoutExistences(BindingResult errors) {
+    public ResponseEntity<?> getWithoutExistences() {
         Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse = this.catchErrors(errors);
-        if (!errorResponse.isEmpty())
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.BAD_REQUEST);
         try {
             List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getWithOutExistences());
             return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
@@ -214,11 +205,8 @@ public class ProductRestController {
     }
 
     @GetMapping("/expired")
-    public ResponseEntity<?> getExpired(BindingResult errors) {
+    public ResponseEntity<?> getExpired() {
         Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse = this.catchErrors(errors);
-        if (!errorResponse.isEmpty())
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.BAD_REQUEST);
         try {
             List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getExpired());
             return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
@@ -230,11 +218,8 @@ public class ProductRestController {
     }
 
     @GetMapping("/near/expire")
-    public ResponseEntity<?> getNearToExpired(BindingResult errors) {
+    public ResponseEntity<?> getNearToExpired() {
         Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse = this.catchErrors(errors);
-        if (!errorResponse.isEmpty())
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.BAD_REQUEST);
         try {
             List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getOneWeekToExpire());
             return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
