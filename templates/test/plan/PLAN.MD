@@ -41,7 +41,7 @@
 > Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
-     ```json
+    ```json
       {
         "name": "Papa",
         "stock": 0,
@@ -53,7 +53,7 @@
 * **Resultados esperados:** 
   1. Status code: 201 CREATED
   2. Body: 
-     ```json
+    ```json
       {
         "id": "1d4a4d6e-c418-4a7e-9b59-209f6583d706"(Puede variar),
         "name": "Papa",
@@ -83,7 +83,7 @@
 >  Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
-     ```json
+    ```json
       {
         "name": "Papa",
         "stock": 0,
@@ -95,7 +95,7 @@
 * **Resultados esperados:** 
   1. Status code: 409 CONFLICT
   2. Body: 
-     ```json
+    ```json
       {
         "errorCode": "GC-0009",
         "message": "ERROR, ENTITY ALREADY EXISTS, The product with name: Papaalready exist in the system.",
@@ -122,7 +122,7 @@
 > Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
-     ```json
+    ```json
       {
         "name": "",
         "stock": 0,
@@ -133,7 +133,7 @@
 * **Resultados esperados:** 
   1. Status code: 400 BAD REQUEST
   2. Body: 
-     ```json
+    ```json
       {
         "errorCode": "GC-0007",
         "message": "ERROR, BAD FORMAT, The name of the product can't be blank",
@@ -160,7 +160,7 @@
 > Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
-     ```json
+    ```json
       {
         "name": "Banano",
         "stock": -1,
@@ -171,7 +171,7 @@
 * **Resultados esperados:** 
   1. Status code: 400 BAD REQUEST
   2. Body: 
-     ```json
+    ```json
       {
         "errorCode": "GC-0007",
         "message": "ERROR, BAD FORMAT, The stock can't be negative",
@@ -198,7 +198,7 @@
 > Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
-     ```json
+    ```json
       {
         "name": "Sandia",
         "stock": 0,
@@ -209,7 +209,7 @@
 * **Resultados esperados:** 
   1. Status code: 406 NOT ACCEPTABLE
   2. Body: 
-     ```json
+    ```json
       {
         "errorCode": "GC-0007",
         "message": "ERROR, BAD FORMAT, The values accepted are: FRUITS VEGETABLES DAIRY MEAT SEAFOOD GRAINS BEVERAGES SWEETS SNACKS CONDIMENTS LEGUMES NUTS_AND_SEEDS ",
@@ -236,7 +236,7 @@
 > Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
-     ```json
+    ```json
       {
         "name": "Sandia",
         "stock": 0,
@@ -247,7 +247,7 @@
 * **Resultados esperados:** 
   1. Status code: 406 NOT ACCEPTABLE
   2. Body: 
-     ```json
+    ```json
       {
         "errorCode": "GC-0007",
         "message": "ERROR, BAD FORMAT, The values accepted are: FRUITS VEGETABLES DAIRY MEAT SEAFOOD GRAINS BEVERAGES SWEETS SNACKS CONDIMENTS LEGUMES NUTS_AND_SEEDS ",
@@ -274,7 +274,7 @@
 > Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
-     ```json
+    ```json
       {
         "name": "Sandia",
         "stock": 0,
@@ -285,7 +285,7 @@
 * **Resultados esperados:** 
   1. Status code: 406 NOT ACCEPTABLE
   2. Body: 
-     ```json
+    ```json
       {
         "errorCode": "GC-0007",
         "message": "ERROR, BAD FORMAT, The values accepted are: MILLILITERS LITERS CUPS TEASPOONS TABLESPOONS FLUID_OUNCES GRAMS KILOGRAMS OUNCES POUNDS PIECES SLICES SERVINGS ",
@@ -312,7 +312,7 @@
 > Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
-     ```json
+    ```json
       {
         "name": "Sandia",
         "stock": 0,
@@ -323,7 +323,7 @@
 * **Resultados esperados:** 
   1. Status code: 201 CREATED
   2. Body: 
-     ```json
+    ```json
       {
         "id": "07d22c50-4c4c-46d4-8f15-a834d9c33eaf",
         "name": "Sandia",
@@ -352,7 +352,7 @@
 > Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenar el Json con los datos apropiados para que se cree exitosamente el producto, por ejemplo:
-     ```json
+    ```json
       {
         "name": "Manzana",
         "stock": 0,
@@ -363,7 +363,7 @@
 * **Resultados esperados:** 
   1. Status code: 406 NOT ACCEPTABLE
   2. Body: 
-     ```json
+    ```json
       {
         "errorCode": "GC-0004",
         "message": "ERROR, BUSINESS RULE HAS BEEN VIOLATED, Can't save products expired.",
@@ -392,7 +392,7 @@
 * **Resultados esperados:** 
   1. Status code: 404 NOT FOUND
   2. Body: 
-     ```json
+    ```json
       {
         "errorCode": "GC-0005",
         "message": "ERROR, NO DATA, There is no information recorded in the inventory.",
@@ -421,7 +421,7 @@
 * **Resultados esperados:** 
   1. Status code: 200 OK
   2. Body: 
-     ```json
+    ```json
       [
         {
           "id": "8b50ad68-3e26-43f9-a200-8748c8045de9",
@@ -454,7 +454,7 @@
 * **Resultados esperados:** 
   1. Status code: 200 OK
   2. Body: 
-     ```json
+    ```json
       [
         {
           "id": "2557b53b-460a-45e0-94cd-6efd02f41bff",
@@ -494,7 +494,7 @@
 > Por defecto la aplicación se ejecuta en http://localhost:8080
 
   4. Rellenear el Body con la nueva información
-     ```json
+    ```json
       {
         "id": "236ee3fd-7e22-4500-a899-a79a439e1564",
         "name": "Papaya",
@@ -507,7 +507,7 @@
 * **Resultados esperados:** 
   1. Status code: 200 OK
   2. Body: 
-     ```json
+    ```json
       {
         "id": "236ee3fd-7e22-4500-a899-a79a439e1564",
         "name": "Papaya",
@@ -551,7 +551,7 @@
 * **Resultados esperados:** 
   1. Status code: 404 NOT FOUND
   2. Body: 
-     ```json
+    ```json
       {
         "errorCode": "GC-0008",
         "message": "ERROR, COULDN'T FOUND ENTITY, The product with id: estenoexiste is not registered in the inventory.",
