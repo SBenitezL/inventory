@@ -75,11 +75,13 @@ public class ManageProductCUImplAdapter implements ManageProductCUIntPort {
                     "The product with id: " + product.getId() + " is not registered in the inventory.");
         if (product.getCategory() == null)
             this.formatter.returnResponseBusinessRuleViolated("Category can't be null.");
-        if (!product.isValidName())
-            this.formatter.returnResponseBusinessRuleViolated("Name can't be empty.");
-        if (this.gateway.existByName(product.getName().getName()))
-            this.formatter.returnResponseBusinessRuleViolated(
-                    "All ready exist a product with name " + product.getName().getName() + ".");
+        if (!old.getName().getName().equals(product.getName().getName())) {
+            if (!product.isValidName())
+                this.formatter.returnResponseBusinessRuleViolated("Name can't be empty.");
+            if (this.gateway.existByName(product.getName().getName()))
+                this.formatter.returnResponseBusinessRuleViolated(
+                        "All ready exist a product with name " + product.getName().getName() + ".");
+        }
         if (product.getUnit() == null)
             this.formatter.returnResponseBusinessRuleViolated("Units can't be empty.");
 
