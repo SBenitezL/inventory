@@ -75,8 +75,11 @@ public class ManageProductCUImplAdapter implements ManageProductCUIntPort {
                     "The product with id: " + product.getId() + " is not registered in the inventory.");
         if (product.getCategory() == null)
             this.formatter.returnResponseBusinessRuleViolated("Category can't be null.");
-        if (product.isValidName())
+        if (!product.isValidName())
             this.formatter.returnResponseBusinessRuleViolated("Name can't be empty.");
+        if (this.gateway.existByName(product.getName().getName()))
+            this.formatter.returnResponseBusinessRuleViolated(
+                    "All ready exist a product with name " + product.getName().getName() + ".");
         if (product.getUnit() == null)
             this.formatter.returnResponseBusinessRuleViolated("Units can't be empty.");
 
@@ -87,6 +90,8 @@ public class ManageProductCUImplAdapter implements ManageProductCUIntPort {
     public Product changeName(String uuid, String name) {
         if (name.isBlank())
             this.formatter.returnResponseBusinessRuleViolated("Name can't be empty.");
+        if (this.gateway.existByName(name))
+            this.formatter.returnResponseBusinessRuleViolated("All ready exist a product with name " + name + ".");
         Product old = this.gateway.findByProductId(uuid);
         if (old == null)
             this.formatter.returnResponseErrorEntityNotFound(
