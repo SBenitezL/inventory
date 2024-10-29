@@ -31,7 +31,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 
-@CrossOrigin(origins = { "http://localhost:5050" })
+@CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
 @RequestMapping("/api/v1/products")
 @AllArgsConstructor
@@ -149,7 +149,7 @@ public class ProductRestController {
         }
     }
 
-    @PatchMapping("/")
+    @PatchMapping("")
     public ResponseEntity<?> updateExpired(BindingResult errors) {
         Map<String, Object> errorResponse = new HashMap<>();
         errorResponse = this.catchErrors(errors);
@@ -165,7 +165,7 @@ public class ProductRestController {
         }
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<?> getAll() {
         Map<String, Object> errorResponse = new HashMap<>();
         try {
