@@ -43,4 +43,12 @@ public interface ExceptionFormatterIntPort {
      */
     public void returNoData(String message);
 
+    /**
+     * Método para devolver un mensaje de error cuando no hay conexión con algun
+     * servicio.
+     * 
+     * @param message mensaje descriptivo del error.
+     */
+    public void returnCotectionError(String message);
+
 }

@@ -130,4 +130,12 @@ public interface ManageProductCUIntPort {
      *         como expirados.
      */
     List<Product> updateExpired();
+
+    /**
+     * Carga los productos expirados a un servicio que se encarga de manejarlos y
+     * remueve el stock.
+     * 
+     * @return {@code List<Product>} lista de productos afectados.
+     */
+    List<Product> removeExpired();
 }

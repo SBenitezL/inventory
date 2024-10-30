@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.inventory.myfood.application.output.ExceptionFormatterIntPort;
 import com.inventory.myfood.application.output.ManageProductGatewayIntPort;
+import com.inventory.myfood.application.output.waste.ManageWasteServiceGatewayIntPort;
 import com.inventory.myfood.domain.user_cases.ManageProductCUImplAdapter;
 import com.inventory.myfood.infraestructure.input.mapper.MapperProductInfraestructureDomain;
 import com.inventory.myfood.infraestructure.output.persistence.mapper.MapperProductPersistenceDomain;
@@ -13,8 +14,8 @@ import com.inventory.myfood.infraestructure.output.persistence.mapper.MapperProd
 public class BeanConfigurations {
     @Bean
     public ManageProductCUImplAdapter createProductCUImplAdapter(ManageProductGatewayIntPort gateway,
-            ExceptionFormatterIntPort exceptionFormater) {
-        return new ManageProductCUImplAdapter(gateway, exceptionFormater);
+            ExceptionFormatterIntPort exceptionFormater, ManageWasteServiceGatewayIntPort wasteService) {
+        return new ManageProductCUImplAdapter(gateway, exceptionFormater, wasteService);
     }
 
     @Bean

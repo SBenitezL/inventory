@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.inventory.myfood.application.output.ExceptionFormatterIntPort;
 import com.inventory.myfood.infraestructure.exceptionHandler.ownException.BadFormatException;
 import com.inventory.myfood.infraestructure.exceptionHandler.ownException.BusinessRuleException;
+import com.inventory.myfood.infraestructure.exceptionHandler.ownException.ConectionErrorException;
 import com.inventory.myfood.infraestructure.exceptionHandler.ownException.EntityExistsException;
 import com.inventory.myfood.infraestructure.exceptionHandler.ownException.EntityNotFoundException;
 import com.inventory.myfood.infraestructure.exceptionHandler.ownException.NoDataException;
@@ -38,6 +39,12 @@ public class ExceptionFormatterImplAdapter implements ExceptionFormatterIntPort 
     @Override
     public void returNoData(String message) {
         NoDataException objException = new NoDataException(message);
+        throw objException;
+    }
+
+    @Override
+    public void returnCotectionError(String message) {
+        ConectionErrorException objException = new ConectionErrorException(message);
         throw objException;
     }
 }

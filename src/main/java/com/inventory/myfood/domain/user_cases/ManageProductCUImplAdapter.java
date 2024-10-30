@@ -8,8 +8,10 @@ import java.util.List;
 import com.inventory.myfood.application.input.ManageProductCUIntPort;
 import com.inventory.myfood.application.output.ExceptionFormatterIntPort;
 import com.inventory.myfood.application.output.ManageProductGatewayIntPort;
+import com.inventory.myfood.application.output.waste.ManageWasteServiceGatewayIntPort;
 import com.inventory.myfood.domain.agregates.Product;
 import com.inventory.myfood.domain.value_objects.Category;
+import com.inventory.myfood.infraestructure.output.waste.gateway.ManageWasteServiceGatewayImpl;
 
 /**
  * Clase encargada de implementar las reglas de negocio referentes a la getión
@@ -21,10 +23,13 @@ import com.inventory.myfood.domain.value_objects.Category;
 public class ManageProductCUImplAdapter implements ManageProductCUIntPort {
     private final ManageProductGatewayIntPort gateway;
     private final ExceptionFormatterIntPort formatter;
+    private final ManageWasteServiceGatewayIntPort wasteService;
 
-    public ManageProductCUImplAdapter(ManageProductGatewayIntPort gateway, ExceptionFormatterIntPort formatter) {
+    public ManageProductCUImplAdapter(ManageProductGatewayIntPort gateway, ExceptionFormatterIntPort formatter,
+            ManageWasteServiceGatewayIntPort wasteService) {
         this.gateway = gateway;
         this.formatter = formatter;
+        this.wasteService = wasteService;
     }
 
     @Override
@@ -194,6 +199,16 @@ public class ManageProductCUImplAdapter implements ManageProductCUIntPort {
             unmarked.add(product);
         }
         return this.gateway.saveAll(unmarked);
+    }
+
+    @Override
+    public List<Product> removeExpired() {
+        List<Product> expired = this.gateway.findExpired();
+        if (this.wasteService.updateWaste(expired))
+            this.formatter.returnCotectionError("El servicio de desperdicio no esta disponible...");
+        for (Product product : expired)
+            product.removeStatus();
+        return this.gateway.saveAll(expired);
     }
 
 }

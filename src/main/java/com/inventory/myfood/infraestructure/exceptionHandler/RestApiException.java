@@ -12,6 +12,7 @@ import com.inventory.myfood.infraestructure.exceptionHandler.exceptionStructure.
 import com.inventory.myfood.infraestructure.exceptionHandler.exceptionStructure.Error;
 import com.inventory.myfood.infraestructure.exceptionHandler.ownException.BadFormatException;
 import com.inventory.myfood.infraestructure.exceptionHandler.ownException.BusinessRuleException;
+import com.inventory.myfood.infraestructure.exceptionHandler.ownException.ConectionErrorException;
 import com.inventory.myfood.infraestructure.exceptionHandler.ownException.EntityExistsException;
 import com.inventory.myfood.infraestructure.exceptionHandler.ownException.EntityNotFoundException;
 import com.inventory.myfood.infraestructure.exceptionHandler.ownException.NoDataException;
@@ -139,6 +140,19 @@ public class RestApiException {
         @ExceptionHandler(IllegalArgumentException.class)
         public ResponseEntity<Error> handleIllegalArgumentException(final HttpServletRequest req,
                         final IllegalArgumentException ex, final Locale locale) {
+                final Error error = ErrorUtils
+                                .createError(ErrorCode.BAD_FORMAT.getCode(),
+                                                String.format("%s, %s",
+                                                                ErrorCode.BAD_FORMAT.getMessageKey(),
+                                                                ex.getMessage()),
+                                                HttpStatus.BAD_REQUEST.value())
+                                .setUrl(req.getRequestURL().toString()).setMethod(req.getMethod());
+                return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+        }
+
+        @ExceptionHandler(ConectionErrorException.class)
+        public ResponseEntity<Error> handleConectionErrorException(final HttpServletRequest req,
+                        final ConectionErrorException ex, final Locale locale) {
                 final Error error = ErrorUtils
                                 .createError(ErrorCode.BAD_FORMAT.getCode(),
                                                 String.format("%s, %s",

@@ -65,6 +65,16 @@ public class Product {
         return true;
     }
 
+    public void removeStatus() {
+        this.isExpired = false;
+        this.usefulLife = null;
+        this.removeStock();
+    }
+
+    public void removeStock() {
+        this.stock = new Stock(0.0);
+    }
+
     public boolean isCategory(String catgory) {
         return Category.isCategory(catgory);
     }
