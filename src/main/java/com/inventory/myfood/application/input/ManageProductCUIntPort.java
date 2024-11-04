@@ -61,15 +61,6 @@ public interface ManageProductCUIntPort {
     public Product markExpired(String uuid);
 
     /**
-     * Determina si la categoria ingresada es válida
-     * 
-     * @param category categoria del alimento
-     * @return {@code true} en caso de que la categoria este registrada y
-     *         {@code false} en caso contrario.
-     */
-    boolean isCategory(String category);
-
-    /**
      * Determina si hay inventario suficiente para cumplir con la demanda de
      * productos del usuario.
      * 

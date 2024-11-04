@@ -2,7 +2,6 @@ package com.inventory.myfood.domain.agregates;
 
 import java.util.Date;
 
-import com.inventory.myfood.domain.value_objects.Category;
 import com.inventory.myfood.domain.value_objects.ProductName;
 import com.inventory.myfood.domain.value_objects.Stock;
 import com.inventory.myfood.domain.value_objects.Units;
@@ -34,10 +33,8 @@ public class Product {
     }
 
     public boolean decreaseStock(Double amount) {
-        // Calcula la nueva cantidad
-        amount = this.stock.getAmount() - amount;
-        // Determina si es válida la nueva cantidad.
-        if (amount < 0)
+        // Determina si es valido el decremento.
+        if (!this.stock.isValidDecrease(amount, this.unit))
             return false;
         // Actualiza el inventario
         this.stock = new Stock(amount);
@@ -73,10 +70,6 @@ public class Product {
 
     public void removeStock() {
         this.stock = new Stock(0.0);
-    }
-
-    public boolean isCategory(String catgory) {
-        return Category.isCategory(catgory);
     }
 
     public boolean isValidName() {

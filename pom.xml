@@ -12,7 +12,7 @@
 	<artifactId>myfood</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Inventory</name>
-	<description>Aplicació que busca dar solución al contexto acotado del manejo de inventario de un restaurante</description>
+	<description>Aplicación que busca dar solución al contexto acotado del manejo de inventario de un restaurante</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -34,7 +34,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>2021.0.6</version> <!-- Versión compatible con Spring Boot 2.6.6 -->
+				<version>2023.0.3</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -96,6 +96,12 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>3.0.4</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -114,5 +120,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

@@ -1,6 +1,5 @@
 package com.inventory.myfood.infraestructure.output.persistence.entities;
 
-import com.inventory.myfood.infraestructure.output.persistence.entities.enums.CategoryEnum;
 import com.inventory.myfood.infraestructure.output.persistence.entities.enums.UnitsEnum;
 
 import java.util.Date;
@@ -12,6 +11,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -55,9 +56,9 @@ public class ProductEntity {
     /**
      * @brief Categoría a la que pertenece el producto, pertenece a un dominio.
      */
-    @Column(nullable = false)
-    @Enumerated(value = EnumType.STRING)
-    private CategoryEnum category;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "category_id")
+    private CategoryEntity category;
     /**
      * @brief Unidades en las que se almacena el producto, pueden ser {@code Kilos},
      *        {@code Libras}, {@code Litros}, etc ...

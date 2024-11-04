@@ -4,11 +4,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.inventory.myfood.application.output.ExceptionFormatterIntPort;
+import com.inventory.myfood.application.output.ManageFinderCategoryGatewayIntPort;
 import com.inventory.myfood.application.output.ManageProductGatewayIntPort;
 import com.inventory.myfood.application.output.waste.ManageWasteServiceGatewayIntPort;
-import com.inventory.myfood.domain.user_cases.ManageProductCUImplAdapter;
+import com.inventory.myfood.domain.use_cases.ManageProductCUImplAdapter;
 import com.inventory.myfood.infraestructure.input.mapper.MapperProductInfraestructureDomain;
 import com.inventory.myfood.infraestructure.output.persistence.mapper.MapperProductPersistenceDomain;
+import com.inventory.myfood.infraestructure.output.waste.mapper.MapperProductWasteInfraestructureDomain;
 
 @Configuration
 public class BeanConfigurations {
@@ -20,8 +22,14 @@ public class BeanConfigurations {
 
     @Bean
     public MapperProductInfraestructureDomain createMapperProductInfraestructureDomain(
+            ManageFinderCategoryGatewayIntPort finderCategory,
             ExceptionFormatterIntPort exceptionFormater) {
-        return new MapperProductInfraestructureDomain(exceptionFormater);
+        return new MapperProductInfraestructureDomain(finderCategory, exceptionFormater);
+    }
+
+    @Bean
+    public MapperProductWasteInfraestructureDomain createMapperProductWasteInfraestructureDomain() {
+        return new MapperProductWasteInfraestructureDomain();
     }
 
     @Bean

@@ -18,4 +18,19 @@ public class Stock {
     public boolean isValidStock() {
         return this.amount >= 0;
     }
+
+    public boolean isValidDecrease(Double descrease, Units unit) {
+        if (descrease < 0)
+            return false;
+        if (unit == Units.PIECES)
+            return this.amount - descrease >= 0 && descrease % 1 == 0;
+        return this.amount - descrease >= 0;
+
+    }
+
+    public boolean isValidIncrease(Double increase, Units unit) {
+        if (unit == Units.PIECES)
+            return increase > 0 && increase % 1 == 0;
+        return increase > 0;
+    }
 }

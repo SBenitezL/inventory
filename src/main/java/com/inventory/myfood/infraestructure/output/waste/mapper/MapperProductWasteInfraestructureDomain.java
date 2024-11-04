@@ -11,7 +11,7 @@ public class MapperProductWasteInfraestructureDomain {
         List<ProductWasteDTORequest> mapped = new ArrayList<>();
         for (Product product : products) {
             mapped.add(new ProductWasteDTORequest(product.getId(), product.getName().getName(),
-                    product.getCategory().name(), product.getStock().getAmount()));
+                    product.getCategory().getName().getName(), product.getStock().getAmount()));
         }
         return mapped;
     }

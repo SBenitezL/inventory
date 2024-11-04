@@ -9,7 +9,6 @@ import com.inventory.myfood.infraestructure.output.waste.dto.request.ProductWast
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
-//TODO: Verificar endpoint
 @FeignClient(name = "waste-microservice", url = "http://localhost:4003/api/waste")
 public interface WasteServiceClient {
     @PostMapping("/register")

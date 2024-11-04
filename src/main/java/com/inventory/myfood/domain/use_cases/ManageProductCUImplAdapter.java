@@ -1,4 +1,4 @@
-package com.inventory.myfood.domain.user_cases;
+package com.inventory.myfood.domain.use_cases;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,8 +10,6 @@ import com.inventory.myfood.application.output.ExceptionFormatterIntPort;
 import com.inventory.myfood.application.output.ManageProductGatewayIntPort;
 import com.inventory.myfood.application.output.waste.ManageWasteServiceGatewayIntPort;
 import com.inventory.myfood.domain.agregates.Product;
-import com.inventory.myfood.domain.value_objects.Category;
-import com.inventory.myfood.infraestructure.output.waste.gateway.ManageWasteServiceGatewayImpl;
 
 /**
  * Clase encargada de implementar las reglas de negocio referentes a la getión
@@ -30,11 +28,6 @@ public class ManageProductCUImplAdapter implements ManageProductCUIntPort {
         this.gateway = gateway;
         this.formatter = formatter;
         this.wasteService = wasteService;
-    }
-
-    @Override
-    public boolean isCategory(String category) {
-        return Category.isCategory(category);
     }
 
     @Override

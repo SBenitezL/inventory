@@ -5,12 +5,12 @@ import java.util.List;
 
 import com.inventory.myfood.application.output.ExceptionFormatterIntPort;
 import com.inventory.myfood.domain.agregates.Product;
-import com.inventory.myfood.domain.value_objects.Category;
+import com.inventory.myfood.domain.agregates.Category;
 import com.inventory.myfood.domain.value_objects.ProductName;
 import com.inventory.myfood.domain.value_objects.Stock;
 import com.inventory.myfood.domain.value_objects.Units;
+import com.inventory.myfood.infraestructure.output.persistence.entities.CategoryEntity;
 import com.inventory.myfood.infraestructure.output.persistence.entities.ProductEntity;
-import com.inventory.myfood.infraestructure.output.persistence.entities.enums.CategoryEnum;
 import com.inventory.myfood.infraestructure.output.persistence.entities.enums.UnitsEnum;
 
 import lombok.AllArgsConstructor;
@@ -28,7 +28,7 @@ public class MapperProductPersistenceDomain {
     }
 
     public ProductEntity domainToPersistence(Product domain) {
-        CategoryEnum category = this.defineCategory(domain.getCategory());
+        CategoryEntity category = this.defineCategory(domain.getCategory());
         UnitsEnum units = this.defineUnits(domain.getUnit());
         return new ProductEntity(domain.getId(), domain.getName().getName(), domain.getStock().getAmount(),
                 category, units, domain.getUsefulLife(), domain.isExpired());
@@ -48,15 +48,8 @@ public class MapperProductPersistenceDomain {
         return response;
     }
 
-    private Category defineCategory(CategoryEnum value) {
-        try {
-            Category category = Category.valueOf(value.name());
-            return category;
-        } catch (Exception e) {
-            this.formatter.returnResponseBadFormat("The values accepted are: " + Category.values());
-            return null;
-        }
-
+    private Category defineCategory(CategoryEntity value) {
+        return MapperCategoryPersistenceDomain.mapPersistenceDomain(value);
     }
 
     private Units defineUnits(UnitsEnum value) {
@@ -69,15 +62,8 @@ public class MapperProductPersistenceDomain {
         }
     }
 
-    private CategoryEnum defineCategory(Category value) {
-        try {
-            CategoryEnum category = CategoryEnum.valueOf(value.name());
-            return category;
-        } catch (Exception e) {
-            this.formatter.returnResponseBadFormat("The values accepted are: " + Category.values());
-            return null;
-        }
-
+    private CategoryEntity defineCategory(Category value) {
+        return MapperCategoryPersistenceDomain.mapDomainPeristence(value);
     }
 
     private UnitsEnum defineUnits(Units value) {
