@@ -8,11 +8,11 @@ import com.inventory.myfood.infraestructure.output.persistence.entities.Category
 
 public class MapperCategoryPersistenceDomain {
     public static Category mapPersistenceDomain(CategoryEntity entity) {
-        return new Category(entity.getCategoryId(), entity.getCategoryName(), entity.isAllowDecimals());
+        return new Category(entity.getCategoryId(), entity.getCategoryName());
     }
 
     public static CategoryEntity mapDomainPeristence(Category domain) {
-        return new CategoryEntity(domain.getId(), domain.getName().getName(), domain.isAllowDecimals());
+        return new CategoryEntity(domain.getId(), domain.getName().getName());
     }
 
     public static List<Category> mapPersistenceDomain(List<CategoryEntity> entities) {

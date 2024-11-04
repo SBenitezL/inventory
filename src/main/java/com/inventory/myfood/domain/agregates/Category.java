@@ -18,7 +18,7 @@ public class Category {
         this.name = new CategoryName(name);
     }
 
-    public void update(String name, boolean allowDecimals) {
+    public void update(String name) {
         this.name = new CategoryName(name);
     }
 

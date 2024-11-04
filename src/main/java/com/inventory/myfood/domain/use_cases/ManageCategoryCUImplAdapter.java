@@ -37,7 +37,7 @@ public class ManageCategoryCUImplAdapter implements ManageCategoryCUIntPort {
                 this.formatter.returnResponseErrorEntityExists(
                         "All ready exists a Category with name " + category.getName().getName() + ".");
         }
-        old.update(category.getName().getName(), category.isAllowDecimals());
+        old.update(category.getName().getName());
         return this.serviceDB.save(old);
     }
 

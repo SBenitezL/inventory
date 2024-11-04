@@ -22,6 +22,4 @@ public class CategoryEntity {
     private String categoryId;
     @Column(unique = true)
     private String categoryName;
-    @Column
-    private boolean allowDecimals;
 }
