@@ -3,10 +3,13 @@ package com.inventory.myfood.infraestructure.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.inventory.myfood.application.input.ManageCategoryCUIntPort;
 import com.inventory.myfood.application.output.ExceptionFormatterIntPort;
+import com.inventory.myfood.application.output.ManageCategoryGatewayIntPort;
 import com.inventory.myfood.application.output.ManageFinderCategoryGatewayIntPort;
 import com.inventory.myfood.application.output.ManageProductGatewayIntPort;
 import com.inventory.myfood.application.output.waste.ManageWasteServiceGatewayIntPort;
+import com.inventory.myfood.domain.use_cases.ManageCategoryCUImplAdapter;
 import com.inventory.myfood.domain.use_cases.ManageProductCUImplAdapter;
 import com.inventory.myfood.infraestructure.input.product.mapper.MapperProductInfraestructureDomain;
 import com.inventory.myfood.infraestructure.output.persistence.mapper.MapperProductPersistenceDomain;
@@ -18,6 +21,12 @@ public class BeanConfigurations {
     public ManageProductCUImplAdapter createProductCUImplAdapter(ManageProductGatewayIntPort gateway,
             ExceptionFormatterIntPort exceptionFormater, ManageWasteServiceGatewayIntPort wasteService) {
         return new ManageProductCUImplAdapter(gateway, exceptionFormater, wasteService);
+    }
+
+    @Bean
+    public ManageCategoryCUIntPort createManageCategoryCUIntPort(ManageCategoryGatewayIntPort gateway,
+            ExceptionFormatterIntPort exceptionFormater) {
+        return new ManageCategoryCUImplAdapter(gateway, exceptionFormater);
     }
 
     @Bean
