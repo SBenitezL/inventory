@@ -1,4 +1,4 @@
-package com.inventory.myfood.infraestructure.input.dto.request;
+package com.inventory.myfood.infraestructure.input.product.dto.request;
 
 import lombok.Data;
 

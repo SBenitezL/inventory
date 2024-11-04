@@ -1,4 +1,4 @@
-package com.inventory.myfood.infraestructure.input.dto.response;
+package com.inventory.myfood.infraestructure.input.product.dto.response;
 
 import java.util.Date;
 

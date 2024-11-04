@@ -1,4 +1,4 @@
-package com.inventory.myfood.infraestructure.input.controllers;
+package com.inventory.myfood.infraestructure.input.product.controllers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inventory.myfood.application.input.ManageProductCUIntPort;
-import com.inventory.myfood.infraestructure.input.dto.request.ProductDTORequest;
-import com.inventory.myfood.infraestructure.input.dto.request.ProductWithoutIdDTORequest;
-import com.inventory.myfood.infraestructure.input.dto.response.ProductDTOResponse;
-import com.inventory.myfood.infraestructure.input.mapper.MapperProductInfraestructureDomain;
+import com.inventory.myfood.infraestructure.input.product.dto.request.ProductDTORequest;
+import com.inventory.myfood.infraestructure.input.product.dto.request.ProductWithoutIdDTORequest;
+import com.inventory.myfood.infraestructure.input.product.dto.response.ProductDTOResponse;
+import com.inventory.myfood.infraestructure.input.product.mapper.MapperProductInfraestructureDomain;
 import com.inventory.myfood.domain.agregates.Product;
 
 import jakarta.validation.Valid;

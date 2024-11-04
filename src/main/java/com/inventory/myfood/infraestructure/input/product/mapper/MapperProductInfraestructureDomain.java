@@ -1,4 +1,4 @@
-package com.inventory.myfood.infraestructure.input.mapper;
+package com.inventory.myfood.infraestructure.input.product.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +10,9 @@ import com.inventory.myfood.domain.agregates.Category;
 import com.inventory.myfood.domain.value_objects.ProductName;
 import com.inventory.myfood.domain.value_objects.Stock;
 import com.inventory.myfood.domain.value_objects.Units;
-import com.inventory.myfood.infraestructure.input.dto.request.ProductDTORequest;
-import com.inventory.myfood.infraestructure.input.dto.request.ProductWithoutIdDTORequest;
-import com.inventory.myfood.infraestructure.input.dto.response.ProductDTOResponse;
+import com.inventory.myfood.infraestructure.input.product.dto.request.ProductDTORequest;
+import com.inventory.myfood.infraestructure.input.product.dto.request.ProductWithoutIdDTORequest;
+import com.inventory.myfood.infraestructure.input.product.dto.response.ProductDTOResponse;
 
 import lombok.AllArgsConstructor;
 

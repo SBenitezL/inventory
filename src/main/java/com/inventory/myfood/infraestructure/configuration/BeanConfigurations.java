@@ -8,7 +8,7 @@ import com.inventory.myfood.application.output.ManageFinderCategoryGatewayIntPor
 import com.inventory.myfood.application.output.ManageProductGatewayIntPort;
 import com.inventory.myfood.application.output.waste.ManageWasteServiceGatewayIntPort;
 import com.inventory.myfood.domain.use_cases.ManageProductCUImplAdapter;
-import com.inventory.myfood.infraestructure.input.mapper.MapperProductInfraestructureDomain;
+import com.inventory.myfood.infraestructure.input.product.mapper.MapperProductInfraestructureDomain;
 import com.inventory.myfood.infraestructure.output.persistence.mapper.MapperProductPersistenceDomain;
 import com.inventory.myfood.infraestructure.output.waste.mapper.MapperProductWasteInfraestructureDomain;
 
