@@ -3,6 +3,8 @@ package com.inventory.myfood.infraestructure.output.persistence.gateway;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.inventory.myfood.application.output.ManageCategoryGatewayIntPort;
 import com.inventory.myfood.domain.agregates.Category;
 import com.inventory.myfood.infraestructure.output.persistence.entities.CategoryEntity;
@@ -12,6 +14,7 @@ import com.inventory.myfood.infraestructure.output.persistence.repositories.Cate
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+@Service
 public class ManageCategoryGatewayImplAdapter implements ManageCategoryGatewayIntPort {
 
     private final CategoryRepository serviceDB;
@@ -32,12 +35,13 @@ public class ManageCategoryGatewayImplAdapter implements ManageCategoryGatewayIn
     @Override
     public Category save(Category category) {
         return MapperCategoryPersistenceDomain
-                .mapPersistenceDomain(MapperCategoryPersistenceDomain.mapDomainPeristence(category));
+                .mapPersistenceDomain(
+                        this.serviceDB.save(MapperCategoryPersistenceDomain.mapDomainPeristence(category)));
     }
 
     @Override
     public boolean existByName(String name) {
-        return this.serviceDB.exisexistsByCategoryName(name);
+        return this.serviceDB.existsByCategoryName(name);
     }
 
     @Override

@@ -11,18 +11,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inventory.myfood.application.input.ManageCategoryCUIntPort;
 import com.inventory.myfood.domain.agregates.Category;
+import com.inventory.myfood.infraestructure.input.category.dto.request.CategoryDTORequest;
 import com.inventory.myfood.infraestructure.input.category.dto.request.CategoryWithoutIdDTORequest;
 import com.inventory.myfood.infraestructure.input.category.dto.response.CategoryDTOResponse;
 import com.inventory.myfood.infraestructure.input.category.mapper.MapperCategoryInfraestructureDomain;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,7 +62,7 @@ public class InventoryRestController {
     }
 
     @PutMapping("")
-    public ResponseEntity<?> update(@Valid @RequestBody CategoryWithoutIdDTORequest request, BindingResult errors) {
+    public ResponseEntity<?> update(@Valid @RequestBody CategoryDTORequest request, BindingResult errors) {
         Map<String, Object> errorResponse = new HashMap<>();
         errorResponse = this.catchErrors(errors);
         if (!errorResponse.isEmpty())
@@ -71,7 +71,7 @@ public class InventoryRestController {
         Category domain = MapperCategoryInfraestructureDomain.mapInfraestructureDomain(request);
         CategoryDTOResponse response = MapperCategoryInfraestructureDomain
                 .mapDomainInfraestructure(this.domain.update(domain));
-        return new ResponseEntity<CategoryDTOResponse>(response, HttpStatus.CREATED);
+        return new ResponseEntity<CategoryDTOResponse>(response, HttpStatus.OK);
     }
 
     @GetMapping("")
@@ -81,9 +81,8 @@ public class InventoryRestController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/{uuid}")
-    public ResponseEntity<CategoryDTOResponse> getById(
-            @Valid @NotBlank(message = "the identifier can't be blank") @PathVariable String uuid) {
+    @GetMapping("/")
+    public ResponseEntity<CategoryDTOResponse> getById(@RequestParam String uuid) {
         CategoryDTOResponse response = MapperCategoryInfraestructureDomain
                 .mapDomainInfraestructure(this.domain.findById(uuid));
         return new ResponseEntity<>(response, HttpStatus.OK);

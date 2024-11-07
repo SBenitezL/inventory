@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.inventory.myfood.infraestructure.output.persistence.entities.CategoryEntity;
 
 public interface CategoryRepository extends JpaRepository<CategoryEntity, String> {
-    boolean exisexistsByCategoryName(String name);
+    boolean existsByCategoryName(String name);
 }

@@ -1,11 +1,9 @@
 package com.inventory.myfood.infraestructure.input.category.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
-@AllArgsConstructor
+@Data
 public class CategoryDTORequest {
     @NotBlank(message = "The id of Category can't be blank.")
     private String id;
