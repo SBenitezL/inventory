@@ -15,8 +15,11 @@ public class Stock {
         this.amount = amount;
     }
 
-    public boolean isValidStock() {
-        return this.amount >= 0;
+    public boolean isValidStock(boolean allowDecimals) {
+        boolean response = this.amount >= 0;
+        if (!allowDecimals)
+            response = response && this.amount % 1 == 0;
+        return response;
     }
 
     public boolean isValidDecrease(Double descrease, Units unit) {

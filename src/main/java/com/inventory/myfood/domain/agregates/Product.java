@@ -77,7 +77,7 @@ public class Product {
     }
 
     public boolean isValidStock() {
-        return this.stock.isValidStock();
+        return this.stock.isValidStock(this.unit.isAllowDecimals());
     }
 
     public void update(Product data) {
