@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.inventory</groupId>
-	<artifactId>myfood</artifactId>
+	<artifactId>inventory-microservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Inventory</name>
 	<description>Aplicación que busca dar solución al contexto acotado del manejo de inventario de un restaurante</description>
@@ -53,12 +53,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-docker-compose</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>

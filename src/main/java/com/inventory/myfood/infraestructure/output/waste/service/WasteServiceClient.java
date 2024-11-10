@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.inventory.myfood.infraestructure.output.waste.dto.request.ProductWasteDTORequest;
+import com.inventory.myfood.infraestructure.output.waste.dto.response.WasteDTOResponse;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-
-@FeignClient(name = "waste-microservice", url = "http://localhost:4003/api/waste")
+@FeignClient(name = "waste-microservice")
 public interface WasteServiceClient {
-    @PostMapping("/register")
-    Boolean registerWaste(@RequestBody List<ProductWasteDTORequest> products);
+    @PostMapping("/api/v1/wastes/register")
+    List<WasteDTOResponse> registerWaste(@RequestBody List<ProductWasteDTORequest> products);
 }

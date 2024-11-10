@@ -3,6 +3,7 @@ package com.inventory.myfood.application.output.waste;
 import java.util.List;
 
 import com.inventory.myfood.domain.agregates.Product;
+import com.inventory.myfood.infraestructure.output.waste.dto.response.WasteDTOResponse;
 
 /**
  * interface de comunicación con el microservicio de desperdicio
@@ -15,5 +16,5 @@ public interface ManageWasteServiceGatewayIntPort {
      * @return {@code true} en caso de que se hayan ingresado con éxito y
      *         {@code false} en caso contrario.
      */
-    Boolean updateWaste(List<Product> waste);
+    List<WasteDTOResponse> updateWaste(List<Product> waste);
 }

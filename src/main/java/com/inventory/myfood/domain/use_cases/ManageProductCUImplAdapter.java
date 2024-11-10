@@ -197,7 +197,7 @@ public class ManageProductCUImplAdapter implements ManageProductCUIntPort {
     @Override
     public List<Product> removeExpired() {
         List<Product> expired = this.gateway.findExpired();
-        if (this.wasteService.updateWaste(expired))
+        if (this.wasteService.updateWaste(expired).isEmpty())
             this.formatter.returnCotectionError("El servicio de desperdicio no esta disponible...");
         for (Product product : expired)
             product.removeStatus();

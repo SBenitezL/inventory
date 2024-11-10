@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.inventory.myfood.application.output.waste.ManageWasteServiceGatewayIntPort;
 import com.inventory.myfood.domain.agregates.Product;
+import com.inventory.myfood.infraestructure.output.waste.dto.response.WasteDTOResponse;
 import com.inventory.myfood.infraestructure.output.waste.mapper.MapperProductWasteInfraestructureDomain;
 import com.inventory.myfood.infraestructure.output.waste.service.WasteServiceClient;
 
@@ -20,7 +21,7 @@ public class ManageWasteServiceGatewayImpl implements ManageWasteServiceGatewayI
     private final MapperProductWasteInfraestructureDomain mapper;
 
     @Override
-    public Boolean updateWaste(List<Product> waste) {
+    public List<WasteDTOResponse> updateWaste(List<Product> waste) {
         return this.wasteService.registerWaste(this.mapper.mapDomainToInfraestructure(waste));
     }
 
