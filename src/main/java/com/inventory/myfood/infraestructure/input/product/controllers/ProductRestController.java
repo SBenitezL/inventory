@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inventory.myfood.application.input.ManageProductCUIntPort;
+import com.inventory.myfood.application.output.ExceptionFormatterIntPort;
 import com.inventory.myfood.infraestructure.input.product.dto.request.ProductDTORequest;
 import com.inventory.myfood.infraestructure.input.product.dto.request.ProductWithoutIdDTORequest;
 import com.inventory.myfood.infraestructure.input.product.dto.response.ProductDTOResponse;
 import com.inventory.myfood.infraestructure.input.product.mapper.MapperProductInfraestructureDomain;
+import com.inventory.myfood.infraestructure.output.waste.dto.response.WasteDTOResponse;
 import com.inventory.myfood.domain.agregates.Product;
 
 import jakarta.validation.Valid;
@@ -38,56 +40,41 @@ import lombok.AllArgsConstructor;
 public class ProductRestController {
     private final ManageProductCUIntPort domain;
     private final MapperProductInfraestructureDomain mapper;
+    private final ExceptionFormatterIntPort formatter;
 
     @PostMapping("")
     public ResponseEntity<?> createProduct(@Valid @RequestBody ProductWithoutIdDTORequest request,
             BindingResult errors) {
-        Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse = this.catchErrors(errors);
-        if (!errorResponse.isEmpty())
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.BAD_REQUEST);
+        this.catchErrors(errors);
         Product product = this.mapper.infraestructureToDomain(request);
-
         ProductDTOResponse response = this.mapper.domainToInfraestructure(this.domain.saveProduct(product));
         return new ResponseEntity<ProductDTOResponse>(response, HttpStatus.CREATED);
-
     }
 
     @PutMapping("")
     public ResponseEntity<?> updateProduct(@Valid @RequestBody ProductDTORequest request,
             BindingResult errors) {
-        Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse = this.catchErrors(errors);
-        if (!errorResponse.isEmpty())
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.BAD_REQUEST);
+        this.catchErrors(errors);
         Product product = this.mapper.infraestructureToDomain(request);
-        try {
-            ProductDTOResponse response = this.mapper.domainToInfraestructure(this.domain.updateProduct(product));
-            return new ResponseEntity<ProductDTOResponse>(response, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            errorResponse.put("mensaje", "Error when inserting into database");
-            errorResponse.put("error", e.getMessage() + "" + e.getMostSpecificCause().getMessage());
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        ProductDTOResponse response = this.mapper.domainToInfraestructure(this.domain.updateProduct(product));
+        return new ResponseEntity<ProductDTOResponse>(response, HttpStatus.OK);
 
+    }
+
+    @PostMapping("/clean")
+    public ResponseEntity<List<ProductDTOResponse>> cleanExpired() {
+        List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.removeExpired());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PatchMapping("/identifier/{productId}")
     public ResponseEntity<?> updateExpired(
             @Valid @NotBlank(message = "The identifier can't be empty.") @PathVariable String productId,
             BindingResult errors) {
-        Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse = this.catchErrors(errors);
-        if (!errorResponse.isEmpty())
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.BAD_REQUEST);
-        try {
-            ProductDTOResponse response = this.mapper.domainToInfraestructure(this.domain.markExpired(productId));
-            return new ResponseEntity<ProductDTOResponse>(response, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            errorResponse.put("mensaje", "Error when inserting into database");
-            errorResponse.put("error", e.getMessage() + "" + e.getMostSpecificCause().getMessage());
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        this.catchErrors(errors);
+        ProductDTOResponse response = this.mapper.domainToInfraestructure(this.domain.markExpired(productId));
+        return new ResponseEntity<ProductDTOResponse>(response, HttpStatus.OK);
+
     }
 
     @PatchMapping("/identifier/{productId}/name/{name}")
@@ -95,18 +82,9 @@ public class ProductRestController {
             @Valid @NotBlank(message = "The identifier can't be empty.") @PathVariable String productId,
             @Valid @NotBlank(message = "The identifier can't be empty.") @PathVariable String name,
             BindingResult errors) {
-        Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse = this.catchErrors(errors);
-        if (!errorResponse.isEmpty())
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.BAD_REQUEST);
-        try {
-            ProductDTOResponse response = this.mapper.domainToInfraestructure(this.domain.changeName(productId, name));
-            return new ResponseEntity<ProductDTOResponse>(response, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            errorResponse.put("mensaje", "Error when inserting into database");
-            errorResponse.put("error", e.getMessage() + "" + e.getMostSpecificCause().getMessage());
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        this.catchErrors(errors);
+        ProductDTOResponse response = this.mapper.domainToInfraestructure(this.domain.changeName(productId, name));
+        return new ResponseEntity<ProductDTOResponse>(response, HttpStatus.OK);
     }
 
     @PatchMapping("/identifier/{productId}/amount/{amount}")
@@ -114,19 +92,10 @@ public class ProductRestController {
             @Valid @NotBlank(message = "The identifier can't be empty.") @PathVariable String productId,
             @Valid @NotBlank(message = "The identifier can't be empty.") @PathVariable Double amount,
             BindingResult errors) {
-        Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse = this.catchErrors(errors);
-        if (!errorResponse.isEmpty())
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.BAD_REQUEST);
-        try {
-            ProductDTOResponse response = this.mapper
-                    .domainToInfraestructure(this.domain.increaseStock(productId, amount));
-            return new ResponseEntity<ProductDTOResponse>(response, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            errorResponse.put("mensaje", "Error when inserting into database");
-            errorResponse.put("error", e.getMessage() + "" + e.getMostSpecificCause().getMessage());
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        this.catchErrors(errors);
+        ProductDTOResponse response = this.mapper
+                .domainToInfraestructure(this.domain.increaseStock(productId, amount));
+        return new ResponseEntity<ProductDTOResponse>(response, HttpStatus.OK);
     }
 
     @PatchMapping("/amount/{amount}/identifier/{productId}")
@@ -135,131 +104,71 @@ public class ProductRestController {
             @Valid @NotBlank(message = "The identifier can't be empty.") @PathVariable String productId,
             BindingResult errors) {
         Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse = this.catchErrors(errors);
-        if (!errorResponse.isEmpty())
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.BAD_REQUEST);
-        try {
-            ProductDTOResponse response = this.mapper
-                    .domainToInfraestructure(this.domain.decreaseStock(productId, amount));
-            return new ResponseEntity<ProductDTOResponse>(response, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            errorResponse.put("mensaje", "Error when inserting into database");
-            errorResponse.put("error", e.getMessage() + "" + e.getMostSpecificCause().getMessage());
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        this.catchErrors(errors);
+        ProductDTOResponse response = this.mapper
+                .domainToInfraestructure(this.domain.decreaseStock(productId, amount));
+        return new ResponseEntity<ProductDTOResponse>(response, HttpStatus.OK);
     }
 
     @PatchMapping("")
     public ResponseEntity<?> updateExpired(BindingResult errors) {
-        Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse = this.catchErrors(errors);
-        if (!errorResponse.isEmpty())
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.BAD_REQUEST);
-        try {
-            List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.updateExpired());
-            return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            errorResponse.put("mensaje", "Error when inserting into database");
-            errorResponse.put("error", e.getMessage() + "" + e.getMostSpecificCause().getMessage());
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        this.catchErrors(errors);
+        List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.updateExpired());
+        return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
     }
 
     @GetMapping("")
     public ResponseEntity<?> getAll() {
-        Map<String, Object> errorResponse = new HashMap<>();
-        try {
-            List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getAll());
-            return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            errorResponse.put("mensaje", "Error when searching into database");
-            errorResponse.put("error", e.getMessage() + "" + e.getMostSpecificCause().getMessage());
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getAll());
+        return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
     }
 
     @GetMapping("/existences")
     public ResponseEntity<?> getExistences() {
-        Map<String, Object> errorResponse = new HashMap<>();
-        try {
-            List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getProductExistences());
-            return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            errorResponse.put("mensaje", "Error when searching into database");
-            errorResponse.put("error", e.getMessage() + "" + e.getMostSpecificCause().getMessage());
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getProductExistences());
+        return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
     }
 
     @GetMapping("/existences/any")
     public ResponseEntity<?> getWithoutExistences() {
-        Map<String, Object> errorResponse = new HashMap<>();
-        try {
-            List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getWithOutExistences());
-            return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            errorResponse.put("mensaje", "Error when searching into database");
-            errorResponse.put("error", e.getMessage() + "" + e.getMostSpecificCause().getMessage());
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getWithOutExistences());
+        return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
     }
 
     @GetMapping("/expired")
     public ResponseEntity<?> getExpired() {
-        Map<String, Object> errorResponse = new HashMap<>();
-        try {
-            List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getExpired());
-            return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            errorResponse.put("mensaje", "Error when searching into database");
-            errorResponse.put("error", e.getMessage() + "" + e.getMostSpecificCause().getMessage());
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getExpired());
+        return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
     }
 
     @GetMapping("/near/expire")
     public ResponseEntity<?> getNearToExpired() {
-        Map<String, Object> errorResponse = new HashMap<>();
-        try {
-            List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getOneWeekToExpire());
-            return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            errorResponse.put("mensaje", "Error when searching into database");
-            errorResponse.put("error", e.getMessage() + "" + e.getMostSpecificCause().getMessage());
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
+        List<ProductDTOResponse> response = this.mapper.domainToInfraestructure(this.domain.getOneWeekToExpire());
+        return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
     }
 
     @PostMapping("/avalible/inventory")
     public ResponseEntity<?> checkAvalibleInventory(@Valid @RequestBody List<ProductDTORequest> requests,
             BindingResult errors) {
-        Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse = this.catchErrors(errors);
-        if (!errorResponse.isEmpty())
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.BAD_REQUEST);
+        this.catchErrors(errors);
+
         List<Product> products = this.mapper.infraestructureToDomain(requests);
-        try {
-            List<ProductDTOResponse> response = this.mapper
-                    .domainToInfraestructure(this.domain.checkInventoryAvailability(products));
-            return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            errorResponse.put("mensaje", "Error when inserting into database");
-            errorResponse.put("error", e.getMessage() + "" + e.getMostSpecificCause().getMessage());
-            return new ResponseEntity<Map<String, Object>>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
+        List<ProductDTOResponse> response = this.mapper
+                .domainToInfraestructure(this.domain.checkInventoryAvailability(products));
+        return new ResponseEntity<List<ProductDTOResponse>>(response, HttpStatus.OK);
     }
 
-    private Map<String, Object> catchErrors(BindingResult errors) {
-        Map<String, Object> response = new HashMap<>();
+    private void catchErrors(BindingResult errors) {
         if (errors.hasErrors()) {
-            List<String> listaErrores = new ArrayList<>();
+            String msg = "";
 
             for (FieldError error : errors.getFieldErrors()) {
-                listaErrores.add("The field '" + error.getField() + "‘ " + error.getDefaultMessage());
+                msg += "The field '" + error.getField() + "‘ " + error.getDefaultMessage() + "\n";
             }
-            response.put("errors", listaErrores);
+            this.formatter.returnResponseBadFormat(msg);
         }
-        return response;
     }
 
 }

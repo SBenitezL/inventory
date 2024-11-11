@@ -13,7 +13,7 @@ public class ProductDTOResponse {
     private String id;
     private String name;
     private Double stock;
-    private Category category;
+    private String category;
     private String units;
     private Date usefulLife;
     private boolean isExpired;

@@ -39,7 +39,8 @@ public class MapperProductInfraestructureDomain {
 
     public ProductDTOResponse domainToInfraestructure(Product domain) {
         return new ProductDTOResponse(domain.getId(), domain.getName().getName(), domain.getStock().getAmount(),
-                domain.getCategory(), domain.getUnit().name(), domain.getUsefulLife(), domain.isExpired());
+                domain.getCategory().getName().getName(), domain.getUnit().name(), domain.getUsefulLife(),
+                domain.isExpired());
     }
 
     public List<Product> infraestructureToDomain(List<ProductDTORequest> requests) {
