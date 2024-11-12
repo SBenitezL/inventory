@@ -33,7 +33,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 
-@CrossOrigin(origins = { "http://localhost:4200" })
+@CrossOrigin(origins = { "http://localhost:4200", "http://localhost:8080" })
 @RestController
 @RequestMapping("/api/v1/products")
 @AllArgsConstructor
