@@ -66,6 +66,15 @@
 
 En este contexto se busca que los usuarios realicen sus funciones dentro del sistema de inventarios, pasando por agregar productos al inventario, sacar productos, aumentar o disminuir la cantidad de un producto, listar los productos, actualizar el estado de productos vencidos y verificar si hay productos suficientes para cumplir con el menú del día.
 
+> [!NOTE]
+> para ejecutar correctamente el Dockerfile debe ejecutar el commando:
+>
+> ```sh
+>    mvn clean package -DskipTests
+>    docker build -t inventory-microservise .
+>
+> ```
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
